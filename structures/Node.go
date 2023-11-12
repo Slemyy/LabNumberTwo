@@ -6,8 +6,8 @@ type Node struct {
 }
 
 type QueueNode struct {
-	data int
-	next *QueueNode
+	position Position
+	next     *QueueNode
 }
 
 const arraySize = 769 // 769
@@ -24,7 +24,7 @@ type HashNodeAdress struct {
 }
 
 type TreeNode struct {
-	data  int
-	left  *TreeNode
-	right *TreeNode
+	Data  int
+	Left  *TreeNode
+	Right *TreeNode
 }

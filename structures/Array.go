@@ -1,6 +1,7 @@
 package structures
 
 import (
+	"fmt"
 	"math"
 )
 
@@ -38,10 +39,11 @@ func (array *DynamicArray) SubArray() [][]string {
 	n := len(array.Data)
 	result := make([][]string, 0, int(math.Pow(2, float64(n))))
 
-	for i := 0; i < (1 << n); i++ {
+	for i := 0; i < int(math.Pow(2, float64(n))); i++ {
 		subset := make([]string, 0, n)
 		for j := 0; j < n; j++ {
-			if i&(1<<j) > 0 {
+			if i&(int(math.Pow(2, float64(j)))) > 0 {
+				fmt.Printf("(%d, %d) ", i, j)
 				_, item := array.GetItem(j)
 				subset = array.AddToSubset(subset, item)
 			}

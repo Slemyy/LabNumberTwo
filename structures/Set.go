@@ -147,18 +147,6 @@ func Difference(sets ...*Set) *Set {
 		}
 	}
 
-	for _, set := range sets[1:] {
-		for _, value := range set.table {
-			find, _ := firstSet.Itmember(value)
-			if value != "" && !find {
-				err := diffSet.Add(value)
-				if err != nil {
-					return nil
-				}
-			}
-		}
-	}
-
 	return &diffSet
 }
 

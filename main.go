@@ -3,6 +3,7 @@ package main
 import (
 	"LabNumberTwo/structures"
 	"fmt"
+	"math"
 )
 
 func main() {
@@ -13,6 +14,8 @@ func main() {
 	fmt.Println("(][) -", structures.IsValidHooks("(][)"))
 	fmt.Println("\"\" -", structures.IsValidHooks(""))
 	fmt.Println("[] -", structures.IsValidHooks("[]"))
+	fmt.Println("(()))) -", structures.IsValidHooks("(())))"))
+	fmt.Println("((()) -", structures.IsValidHooks("((())"))
 
 	// Второе задание (Множество)
 	fmt.Println("\n-- (Set) --")
@@ -63,11 +66,20 @@ func main() {
 	// Третье задание (Массив)
 	fmt.Println("\n-- (Array) --")
 	array := &structures.DynamicArray{Data: []string{"x", "y", "z"}}
-	fmt.Println(array.SubArray())
+	fmt.Println("\n", array.SubArray())
 
 	// Четвертое задание (Двоичное дерево)
 	fmt.Println("\n-- (Binary Search Tree) --")
 	BST := &structures.BinarySearchTree{}
+
+	//test := &structures.TreeNode{Data: 6, Left: &structures.TreeNode{Data: 10}, Right: &structures.TreeNode{Data: 5}}
+	//structures.Tree(test, "", true, true)
+
+	test := &structures.TreeNode{Data: 8, Left: &structures.TreeNode{Data: 3, Right: &structures.TreeNode{Data: 6}}}
+	structures.Tree(test, "", true, true)
+
+	fmt.Println(structures.TestBST(test, math.MinInt, math.MaxInt))
+	fmt.Println()
 
 	BST.Insert(6)
 	BST.Insert(5)
@@ -88,6 +100,29 @@ func main() {
 
 	// Пятое задание (Очередь)
 	fmt.Println("\n-- (Queue) --")
+	N := 8 // Размер доски NxN
+	knightPos := structures.Position{X: 1, Y: 4}
+	newPos := structures.Position{X: 3, Y: 1}
+
+	path, pathLength := structures.FindShortestPath(N, knightPos, newPos)
+	if path != nil {
+		fmt.Printf("Кратчайший путь: %d хода(-ов)\n", pathLength)
+		fmt.Print("Координаты пути: ")
+
+		for i, pos := range path {
+			if len(path)-1 == i {
+				fmt.Printf("(%d, %d).", pos.X, pos.Y)
+				continue
+			}
+
+			fmt.Printf("(%d, %d) -> ", pos.X, pos.Y)
+			i++
+		}
+	} else {
+		fmt.Println("Путь не найден.")
+	}
+
+	fmt.Println()
 
 	// Шестое задание (Хеш-таблица)
 	fmt.Println("\n-- (HashTableChains) --")
